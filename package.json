@@ -4,16 +4,31 @@
   "description": "Personal front-end boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "",
-    "clean": "",
-    "build": "",
-    "deploy": "",
-    "dev": "",
+    "start": "node scripts/server.js",
+    "clean": "rimraf dist",
+    "dev": "npm start & npm run css & npm run js",
+    "css": "node-sass -w src/styles/index.scss src/app.css",
+    "js": "webpack -w src/scripts/index.js src/app.js",
+    "test": "npm run lint && node scripts/test.js",
+    "lint": "eslint src/scripts",
+    "build": "node scripts/build.js all",
+    "build:js": "node scripts/build.js js",
+    "build:css": "node scripts/build.js css",
+    "build:html": "node scripts/build.js html",
+    "build:assets": "node scripts/build.js assets",
+    "deploy": "node scripts/deploy.js",
     "prepublish": "git add -f dist && git commit -m 'publish gh-pages'",
     "publish": "git subtree push --prefix dist origin gh-pages",
     "postpublish": "git rm -r --cached dist"
   },
   "author": "Eming",
-  "license": "MIT"
+  "repository": "https://github.com/emingchn/boilerplate",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "2.18.8",
+    "eslint": "3.19.0",
+    "node-sass": "4.5.0",
+    "rimraf": "2.6.1",
+    "webpack": "2.3.3"
+  }
 }
