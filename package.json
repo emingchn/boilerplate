@@ -5,17 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node scripts/server.js",
-    "clean": "rimraf dist",
-    "dev": "npm start & npm run css & npm run js",
-    "css": "node-sass -w src/styles/index.scss src/app.css",
-    "js": "webpack -w src/scripts/index.js src/app.js",
+    "clean": "rimraf dist/*",
+    "dev": "npm start & npm run css -- -w & npm run js -- -w",
+    "css": "node-sass src/styles/index.scss src/app.css",
+    "js": "webpack src/scripts/index.js src/app.js",
     "test": "npm run lint && node scripts/test.js",
     "lint": "eslint src/scripts; exit 0",
-    "build": "node scripts/build.js all",
-    "build:js": "node scripts/build.js js",
-    "build:css": "node scripts/build.js css",
-    "build:html": "node scripts/build.js html",
-    "build:assets": "node scripts/build.js assets",
+    "build": "npm run build:js & npm run build:css & npm run build:html & npm run build:assets",
+    "build:js": "npm run js && uglifyjs -o dist/app.min.js src/app.js",
+    "build:css": "npm run css && cleancss -o dist/app.min.css src/app.css",
+    "build:html": "exit 0",
+    "build:assets": "exit 0",
     "deploy": "node scripts/deploy.js",
     "prepublish": "git add -f dist && git commit -m 'publish gh-pages'",
     "publish": "git subtree push --prefix dist origin gh-pages",
@@ -26,9 +26,11 @@
   "license": "MIT",
   "devDependencies": {
     "browser-sync": "2.18.8",
+    "clean-css-cli": "^4.0.12",
     "eslint": "3.19.0",
     "node-sass": "4.5.0",
     "rimraf": "2.6.1",
+    "uglify-js": "2.8.22",
     "webpack": "2.3.3"
   }
 }
