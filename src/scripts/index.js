@@ -1,3 +1,3 @@
-import bar from './components'
+import bar from './components';
 
 bar();

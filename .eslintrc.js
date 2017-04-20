@@ -1,5 +1,8 @@
 module.exports = {
-  rules: {
+  "env": {
+    "es6": true
+  },
+  "rules": {
     // The rules below are listed in the order they appear on the eslint
     // rules page. All rules are listed to make it easier to keep in sync
     // as new ESLint rules are added.
@@ -41,12 +44,7 @@ module.exports = {
     // 'no-unsafe-finally': 2, // eslint:recommended
     // 'no-unsafe-negation': 0,
     // 'use-isnan': 2 // eslint:recommended
-    'valid-jsdoc': [2, {
-      requireParamDescription: false,
-      requireReturnDescription: false,
-      requireReturn: false,
-      prefer: {returns: 'return'},
-    }],
+    // 'valid-jsdoc': 2,
     // 'valid-typeof': 2 // eslint:recommended
 
 
@@ -238,13 +236,7 @@ module.exports = {
     'padded-blocks': [2, 'never'],
     'quote-props': [2, 'consistent'],
     'quotes': [2, 'single', {allowTemplateLiterals: true}],
-    'require-jsdoc': [2, {
-      require: {
-        FunctionDeclaration: true,
-        MethodDefinition: true,
-        ClassDeclaration: true,
-      },
-    }],
+    //'require-jsdoc': 2,
     'semi-spacing': 2,
     'semi': 2,
     // 'sort-keys': 0,
@@ -296,4 +288,7 @@ module.exports = {
     // 'template-curly-spacing': 0,
     'yield-star-spacing': [2, 'after'],
   },
+  "parserOptions": {
+    "sourceType": "module",
+  }
 };
